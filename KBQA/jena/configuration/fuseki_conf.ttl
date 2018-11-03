@@ -1,0 +1,36 @@
+@prefix fuseki: <http://jena.apache.org/fuseki#> . 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix tdb: <http://jena.hpl.hp.com/2008/tdb#> . 
+@prefix ja: <http://jena.hpl.hp.com/2005/11/Assembler#> . 
+@prefix : <http://base/#> . 
+
+<#service> rdf:type fuseki:Service ; 
+    fuseki:name "movies" ;
+    fuseki:serviceQuery "sparql" ;
+    fuseki:dataset <#dataset> ; 
+    fuseki:serviceReadGraphStore      "get" ;
+    fuseki:serviceReadWriteGraphStore "data" ;
+    fuseki:serviceUpdate              "update" ;
+    fuseki:serviceUpload              "upload"
+    . 
+
+<#dataset> rdf:type ja:RDFDataset ;
+	ja:defaultGraph <#modelInf> ;
+	.
+
+<#modelInf> 
+    rdf:type ja:InfModel ;
+    #ja:reasoner [ja:reasonerURL <http://jena.hpl.hp.com/2003/OWLFBRuleReasoner>]  
+    ja:reasoner [ 
+        ja:reasonerURL <http://jena.hpl.hp.com/2003/GenericRuleReasoner> ; 
+        ja:rulesFrom <file:///PATH_TO_JENA/run/databases/Rules.ttl> ] ;
+    ja:baseModel <#baseModel> ; 
+    . 
+
+<#baseModel> rdf:type tdb:GraphTDB ; 
+    tdb:location "X:/PATH_TO_JENA/run/data/tdb" ;
+    tdb:unionDefaultGraph true ; 
+    .
+
+
