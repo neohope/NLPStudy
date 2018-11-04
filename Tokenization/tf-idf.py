@@ -22,8 +22,8 @@ def tf_idf(docs):
 
     feature_names = vectorizer.get_feature_names()
     corpus_index = [n for n in docs]
-    tdidf = pd.DataFrame(matrix.todense(), index=corpus_index, columns=feature_names)
-    return tf,tdidf
+    df = pd.DataFrame(matrix.todense(), index=corpus_index, columns=feature_names)
+    return tf,df
 
 
 if __name__ == "__main__":
@@ -32,4 +32,4 @@ if __name__ == "__main__":
 
     tf,tdidf=tf_idf(normalized_docs)
     print(tf)
-    print(tdidf)
+    print(df)
