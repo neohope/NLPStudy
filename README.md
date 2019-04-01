@@ -6,7 +6,7 @@ https://github.com/SimmerChan/KG-demo-for-movie
 
 How to build
 ============
-1. install pythoy 3.6+
+1. install python 3.6+
 
 2. install packages
 
@@ -23,6 +23,7 @@ How to build
 3. download nlth data
  ```shell
     import nltk
+    nltk.download('book')
     nltk.download('punkt')
     nltk.download('words')
     nltk.download('wordnet')
